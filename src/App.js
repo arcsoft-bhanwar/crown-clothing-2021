@@ -22,9 +22,9 @@ class App extends React.Component {
       //createUserProfileDocument(userAuth)
       if (!!userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-        console.log('uuuuuu', userRef)
+        //console.log('uuuuuu', userRef)
         userRef.onSnapshot(snapShot => {
-          console.log('vvvvvvvvv', snapShot.data())
+          //console.log('vvvvvvvvv', snapShot.data())
           this.setState({
             currentUser: {
               id: snapShot.id,
@@ -32,7 +32,7 @@ class App extends React.Component {
             }
           });
 
-          console.log(this.state);
+          //console.log(this.state);
         });
       }
 
