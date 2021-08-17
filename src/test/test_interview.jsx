@@ -107,8 +107,18 @@ State of a component is an object that holds some information that may change ov
 
 -------------------------------------------------------
 
-09) Higher-Order Components
+09) React Design Pattern==>
+Higher-Order Component (or HOC) is essentially a design pattern, also known as a Decorator Pattern. In ReactJS, a HOC is a component that wraps another component by adding extra functionality or extra properties. This allows abstraction from some commonly used logic and keeps our code DRY(Don't repeat yourself). 
+
+-------------------------------------------------------
+
+10) Higher-Order Components
 -A higher-order component is a function that takes a component and returns a new component.
+
+While developing React applications, we might develop components that are quite similar to each other with minute differences.
+
+In most cases, developing similar components might not be an issue but, while developing larger applications we need to keep our code DRY(Don't repeat yourself), therefore, we want an abstraction that allows us to define this logic in a single place and share it across components. HOC allows us to create that abstraction.
+
 - Example -1
   import { connect } from 'react-redux'
   export default connect(mapStateToProps)(App) 
@@ -121,24 +131,58 @@ HOC can be used for many use cases:
 - State abstraction and manipulation.
 - Props manipulation.
 
+
+function HOC(WrappedComponent, selectData) {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleChange = this.handleChange.bind(this);
+      this.state = {
+        data: selectData(GlobalDataSource, props),
+      };
+    }
+
+    componentDidMount() {
+      // Listens to the changes added
+      GlobalDataSource.addChangeListener(this.handleChange);
+    }
+
+    componentWillUnmount() {
+      // Listens to the changes removed
+      GlobalDataSource.removeChangeListener(this.handleChange);
+    }
+
+    handleChange() {
+      this.setState({
+        data: selectData(GlobalDataSource, this.props),
+      });
+    }
+
+    render() {
+      // Rendering the wrapped component with the latest data data
+      return <WrappedComponent data={this.state.data} {...this.props} />;
+    }
+  };
+}
+
 -------------------------------------------------------
 
-10) What is the Virtual DOM?
+11) What is the Virtual DOM?
 The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM. This process is called reconciliation.
 
 -------------------------------------------------------
 
-11) Is the Shadow DOM the same as the Virtual DOM?
+12) Is the Shadow DOM the same as the Virtual DOM?
 No, they are different. The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
 
 -------------------------------------------------------
 
-12) What is “React Fiber”?
+13) What is “React Fiber”?
 Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM.
 
 -------------------------------------------------------
 
-13) When to use client-side rendering and server-side rendering?
+14) When to use client-side rendering and server-side rendering?
 
 - Web applications and websites are two different formats of web content.
 - If your website involves repeated dynamic content rendering, SSR is a better choice over CSR.
@@ -148,7 +192,7 @@ Fiber is the new reconciliation engine in React 16. Its main goal is to enable i
 
 -------------------------------------------------------
 
-14)  How you implement Server Side Rendering or SSR?
+15)  How you implement Server Side Rendering or SSR?
 React is already equipped to handle rendering on Node servers. A special version of the DOM renderer is available, which follows the same pattern as on the client side.
 
 import ReactDOMServer from 'react-dom/server'
@@ -159,17 +203,17 @@ ReactDOMServer.renderToString(<App />)
 This method will output the regular HTML as a string, which can be then placed inside a page body as part of the server response. On the client side, React detects the pre-rendered content and seamlessly picks up where it left off.
 -------------------------------------------------------
 
-14) Babel:
+16) Babel:
 Pick all the js, jsx and scss file and make the commpitable or understandable for all the browser not matter new browser or old browser
 
 -------------------------------------------------------
 
-15) Webpack:==>
+17) Webpack:==>
 Pick all the js, jsx and scss and what we import in jsx file and create a bundling together and optimise it for the production.
 
 -------------------------------------------------------
 
-16) React Update state:==>
+18) React Update state:==>
 
 this.setState({searchField:event.target.value})
 
@@ -189,7 +233,7 @@ onClick={()=> this.setState(state=>({
 
 -------------------------------------------------------
 
-React lifecycle Method older one:==>
+19) React lifecycle Method older one:==>
 
 01) Mounting Phase==>
 There are four built-in lifecycle methods that are called in the order when a component is mounted:
@@ -234,7 +278,7 @@ If this.state.showChild return false then <Lifecycles text={this.state.text} /> 
 
 -------------------------------------------------------
 
-React lifecycle Method with hooks:==>
+20) React lifecycle Method with hooks:==>
 
 useEffect(()=>{ /*component did mount*/ },[])
 useEffect(()=>{ /*Component Did update*/ })
@@ -245,7 +289,7 @@ useEffect(()=>{ /*COmpoentDidMount*/ return ()=>{ //component will unmount } },[
 
 -------------------------------------------------------
 
-Using the State Hook:==>
+21) Using the State Hook:==>
 
 import React, { useState } from 'react';
 
@@ -264,7 +308,7 @@ const FunctionalHoocksUseState = ()=>{
 }
 
 -------------------------------------------------------
-Array==>
+22) Array==>
 
 const fruits = ['Apple', 'Banana', 'Licchi', 'Picchi']
     //console.log('arrayyyy', fruits[0]);
@@ -281,7 +325,7 @@ const fruits = ['Apple', 'Banana', 'Licchi', 'Picchi']
 
 -------------------------------------------------------
 
-React map:==>
+23) React map:==>
 
 {
 	sections.map(section=>(
@@ -303,7 +347,7 @@ OR we can restructuring as below
 
 
 
-React-Router-Dom:
+24) React-Router-Dom:===>
 We will get here prop when we are rendering component via <Route exact path='/' component={HomePage} /> we can get props in ‘HomePage’ component 
  are as follows:
 - history
@@ -322,14 +366,14 @@ We will get here prop when we are rendering component via <Route exact path='/' 
 
 -------------------------------------------------------
 
-Code Review::=>
+25) Code Review::=>
 - Code should be having proper commenting and indenting
 - Test Coverge score should be above 70-80%
 
 - we can doe code review using `Review Assistant` of VS Code
 -------------------------------------------------------
 
-Testing Jest/Enzyme::=>
+26) Testing Jest/Enzyme::=>
 - act()
 - Rendering
 - Data Fetching
@@ -342,7 +386,7 @@ Testing Jest/Enzyme::=>
 
 -------------------------------------------------------
 
-Security::=>
+27) Security::=>
 - Secure your HTTP authentication by React Router,JSON Web Token (JWT), OAuth, PassportJs
 - Only Load Stuff if the User Needs It, we can use Lazy Loading(React.lazy)
 - Use default data binding with curly braces {} and React will
@@ -352,7 +396,7 @@ Security::=>
 
 -------------------------------------------------------
 
-Code-Spliting and chunking::=>
+28) Code-Spliting and chunking::=>
 - in CSR we can do code spliting using React.lazy and Suspense
 - Route-based code splitting by React.lazy
 - We can code split using webpack SplitChunksPlugin
@@ -360,12 +404,12 @@ Code-Spliting and chunking::=>
 
 -------------------------------------------------------
 
-Error boundaries::=>
+29) Error boundaries::=>
 Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
 -------------------------------------------------------
 
-Performance Optimization Techniques for React Apps:==>
+30) Performance Optimization Techniques for React Apps:==>
 - Using Immutable Data Structures
    
    shouldComponentUpdate(nextProps, nextState) {
@@ -393,7 +437,7 @@ Performance Optimization Techniques for React Apps:==>
 
 -------------------------------------------------------
 
-TypeScript::=>
+31) TypeScript::=>
 - TypeScript is an open-source language which builds on JavaScript
 - Early spotted bugs: Researchers found that TypeScript detects 15 percent of common bugs at the compile stage. 
 - By understanding JavaScript, TypeScript saves you time catching errors and providing fixes before you run code.
@@ -403,18 +447,18 @@ TypeScript::=>
 
 
 
-RESTful API:=>
+32) RESTful API:=>
 A RESTful API is an architectural style for an application program interface (API) that uses HTTP requests to access and use data. That data can be used to GET, PUT, POST and DELETE data types, which refers to the reading, updating, creating and deleting of operations concerning resources.
 - In react we are using axios
 -------------------------------------------------------
 
-GraphQL:=>
+33) GraphQL:=>
 Send a GraphQL query to your API and get exactly what you need, nothing more and nothing less.
 - We are using graphQL in react via appolo client
 
 -------------------------------------------------------
 
-Redux
+34) Redux
 - Good for managing large state
 - Useful for sharing data between components
 - Predictable state management using the 3 principles.
@@ -626,6 +670,20 @@ setTimeout(()=>{
 What is event bubbling===>
 Event bubbling is a type of event propagation where the event first triggers on the innermost target element, and then successively triggers on the ancestors (parents) of the target element in the same nesting hierarchy till it reaches the outermost DOM element.
 
+-------------------------------------------------------
+
+How do you get unique values of an array ===>
+You can get unique values of an array with the combination of Set and rest expression/spread(...) syntax.
+
+console.log([...new Set([1, 2, 4, 4, 3])]); // [1, 2, 4, 3]
+
+-------------------------------------------------------
+
+What is memory leaks in react?
+The memory leak will happen if the API server or host took some time to respond and the component was unmounted before the response was received. Though the component was unmounted, the response to the request will still be received on completion. The response will then be parsed and setData will be called.
+
+
+-------------------------------------------------------
 https://dev.to/bouhm/react-redux-flow-terminologies-and-example-104b
 https://github.com/sudheerj/reactjs-interview-questions#what-is-redux
 https://github.com/sudheerj/javascript-interview-questions
