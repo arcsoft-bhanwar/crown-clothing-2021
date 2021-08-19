@@ -36,9 +36,9 @@ const Header=({currentUser, hidden})=>(
     </div>
 )
 
-const mapStateToPrios = ({user:{currentUser}, cart:{hidden}})=>({
+const mapStateToProps = ({user:{currentUser}, cart:{hidden}})=>({
     currentUser,
     hidden
 
 })
-export default connect(mapStateToPrios)(Header);
+export default connect(mapStateToProps)(Header);
