@@ -6,17 +6,31 @@ Finally, in 2007, I joined arcgate as a Sr. Web Designer, and now I'm working as
 
 I'm responsible for frontend technical support, so if someone in my team gets stuck, I'm there to help them out and ensure smooth delivery of projects and smooth releases.
 
-- When we receive new projects, I review and go over them with clients. and according to client requirement I’ll work on archetural things like
-- rendering approache SSR or CSR,
-- create reusable component,
-- create common component,
+When we receive new projects, I review and discuss with clients. and, depending on the client's needs, I'll work on architectural elements such as
+
+- Rendering approache SSR or CSR,
+- Directory/folder structure
+- App title + Favicon
 - UI setup like fonts creation from SVG icons,
 - SCSS setup like varibales, mixins, respiinsiveness break points based on max and min-width,
 - webpack implementaion for the bundling,
+- Router (navigation)
+- React-strap/Material UI
+- Backend — Data connectivity (AXIOS for REST API, Firebase SDK integration, GraphQL)
+- Redux + Thunk
+- Redux vs Context API
+- Redux toolkit & Redux persist
+- Multi-environment setup (create deployable builds pointing to specific Database environments using environment variables like dev, qa, preprod(stage) and production, without having all environment config bundled in code.)
+- Internationalization/Multi-Lingual using react-i18next, i18next library.
 - Unit testing implementation using jest  and Enzyme.
-- required node dependency setup,
-- environment setup like dev qa, preprod(stage) and production,
-- setup global environments.
+- Deployment and hosting (Firebase hosting)
+- ES Lint
+- Design Pattern (Container-View)
+- CI/CD for continuous integration.
+
+Then I'll go over everything to make sure it's all incorporated and implemented, and then I'll share my codebase with my team members for future development. 
+
+Deployment:==>
 - In case of React-Native, i’m also reponsible to deploy Android and iOS app respectively on Google Play Store and Apple App Store
 - if we built any web app in ReactJs SSR then need to deploy AWS EC2 (Elastic Compute Cloud) console
 - for ReactJS CSR then need to deploy on AWS S3 bucket and many more things which required a project to kickstart.
@@ -30,9 +44,11 @@ Implement AWS CloudFront so our website can serve via cache
 00) Agile Methodologies:==>
 - Agile methodology is a type of project management process, mainly used for software development, where demands and solutions evolve through the collaborative effort of self-organizing and cross-functional teams and their customers.
 
-- We are working on weelky sprint.
+- We are working on two week sprint.
 - We have daily standup with client in morning then I’ll share the update on daily basis to client on behalf of my team members.
-- Implementaion new features:  When we receive a notification from Jira for new ticket or client put ticket on slack, then I’ll go through the JIRA ticket which was assigned to me and listed out a checklist of unclear things and schedule a call with client and over call I will analysis with client for their requirement.
+
+- Implementaion new features==>:
+ When we receive a notification from Jira for new ticket or client put ticket on slack, then I’ll go through the JIRA ticket which was assigned to me and listed out a checklist of unclear things and schedule a call with client and over call I will analysis with client for their requirement.
 
 - Then we will do POC by creating a seprate branch from the master branch, if everthing works as expected then
 - I’ll work on archetural things and share latest code base with my developer for further development. 
@@ -110,41 +126,25 @@ State of a component is an object that holds some information that may change ov
 Sometimes while developing React applications, there is a need to pass data from a component that is higher in the hierarchy to a component that is deeply nested.
 To pass data between such components, we pass props from a source component, and keep passing the prop to the next component in the hierarchy till we reach the deeply nested component.
 The disadvantage of using prop drilling is that the components that should otherwise be not aware of the data have access to the data.
+
 -------------------------------------------------------
 10) React Design Pattern==>
 - Higher-Order Component (or HOC) is essentially a design pattern, also known as a Decorator Pattern. In ReactJS, a HOC is a component that wraps another component by adding extra functionality or extra properties. This allows abstraction from some commonly used logic and keeps our code DRY(Don't repeat yourself). 
 
 - I understand design patterns for web and mobile platforms, such as Redux, a Flux-based design pattern.
 
+- Container-View, Atomic pattern
+
 -------------------------------------------------------
 
-11) Explain Strict Mode in React?
-import React from "react";
-import ReactDOM, { findDOMNode } from "react-dom";
-
-import App from "./App";
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
- <React.StrictMode>
-   <App />
- </React.StrictMode>,
- rootElement
-);
-
-- StrictMode help us to find
-- Identifying components with unsafe lifecycle methods
-- Warning about the usage of legacy string API
-- Warning about the usage of findDOMNode
-
-12) Higher-Order Components
+11) Higher-Order Components
 -A higher-order component is a function that takes a component and returns a new component.
 
 While developing React applications, we might develop components that are quite similar to each other with minute differences.
 
 In most cases, developing similar components might not be an issue but, while developing larger applications we need to keep our code DRY(Don't repeat yourself), therefore, we want an abstraction that allows us to define this logic in a single place and share it across components. HOC allows us to create that abstraction.
 
-- Example -1
+- Example=> -1
   import { connect } from 'react-redux'
   export default connect(mapStateToProps)(App) 
 
@@ -189,6 +189,28 @@ function HOC(WrappedComponent, selectData) {
     }
   };
 }
+
+
+-------------------------------------------------------
+
+12) Explain Strict Mode in React?
+import React from "react";
+import ReactDOM, { findDOMNode } from "react-dom";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+ <React.StrictMode>
+   <App />
+ </React.StrictMode>,
+ rootElement
+);
+
+- StrictMode help us to find
+- Identifying components with unsafe lifecycle methods
+- Warning about the usage of legacy string API
+- Warning about the usage of findDOMNode
 
 -------------------------------------------------------
 
@@ -311,7 +333,7 @@ useEffect(()=>{ /*Component Did update only if tinku will update*/ },[tinku])
 useEffect(()=>{ /*Component Did update only if tinku & chinku will update*/ },[tinku, chinku])
 useEffect(()=>{ /*COmpoentDidMount*/ return ()=>{ //component will unmount } },[])
 
-
+  useSelector, useDispatch
 -------------------------------------------------------
 
 23) Using the State Hook:==>
@@ -420,9 +442,13 @@ Importance of keys==>
 - With keys, React has an idea of which particular element was deleted,edited, and added.
 - Keys are generally used for displaying a list of data coming from an API.
 
+-------------------------------------------------------
+
 30) How to pass data between react components?
 - Parent Component to Child Component (using props)
 - Child Component to Parent Component (using callbacks)
+
+-------------------------------------------------------
 
 31) React-Router-Dom:===>
 We will get here prop when we are rendering component via <Route exact path='/' component={HomePage} /> we can get props in ‘HomePage’ component 
@@ -485,14 +511,14 @@ We will get here prop when we are rendering component via <Route exact path='/' 
 Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
 Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
+-------------------------------------------------------
+
 37) What is an error boundary?
 Any component which uses lifecycle methods, is considered an error boundary.
 In what places can an error boundary detect an error?
 - Render phase
 - Inside a lifecycle method
 - Inside the constructor
-
-
 
 -------------------------------------------------------
 
@@ -558,13 +584,17 @@ Send a GraphQL query to your API and get exactly what you need, nothing more and
 - 2 State is read only(immutable)So the state object that we will create with redux will actually never get modified and instead we would create a new state after each action is taken by the user.
 - 3 Changes using pure functions.The idea that a pure function is something that receives an input and always returns an output that is predictable.
 
+-------------------------------------------------------
+
 43) Redux Flow:
 - The first one is action and action is something that a user does such as clicking on a button or a drop down menu and what happens in redux is as soon as a user clicks on something a button and creates an action.
 - It goes through something called a reducer and a reducer is simply a function. A pure function that receives an input which is the action so the user just clicked on a button and creates an output and this output is the state or the store as we call it in redux which is the entire state of the app.
+-------------------------------------------------------
 
 44) Flux PatternUnidirectional data flow: 
 Action => Dispatcher= >Store=>View
 
+-------------------------------------------------------
 45) Redux Middleware
 - Redux logger: this is something that is nice for us to use when debugging our redux code.
 - Redux Thunk
@@ -628,6 +658,7 @@ Redux Thunk middleware allows us to write action creators that return a function
 - Context API: Resourceful and ideal for small applications where state changes are minimal
 - Redux: Perfect for larger applications where there are high-frequency state updates
 - Context also doesn't give you anything like the Redux DevTools, the ability to trace your state updates, middleware to add centralized application logic, and other powerful capabilities that Redux enables.
+- Context API for the props drilling within the feature.
 
 -------------------------------------------------------
 
@@ -636,7 +667,7 @@ Redux Thunk middleware allows us to write action creators that return a function
 * Selectors are efficient. A selector is not recomputed unless one of its arguments changes.
 * Selectors are composable. They can be used as input to other selectors.
 
-
+-------------------------------------------------------
 
 52) What is React memo function?
 Class components can be restricted from rendering when their input props are the same using PureComponent or shouldComponentUpdate. Now you can do the same with function components by wrapping them in React.memo.
@@ -750,6 +781,7 @@ The let Keyword
 - let have Block Scope.
 
 -------------------------------------------------------
+
 59) setTimeout and setInterval:===>
 
 var intervalID = setInterval(alert, 1000); // Will alert every second.
@@ -773,21 +805,67 @@ Event bubbling is a type of event propagation where the event first triggers on 
 61) What is memory leaks in react?
 The memory leak will happen if the API server or host took some time to respond and the component was unmounted before the response was received. Though the component was unmounted, the response to the request will still be received on completion. The response will then be parsed and setData will be called.
 
+-------------------------------------------------------
+62) What are primitive data types?
+string, number, boolean, null, undefined, bigint. symbol
 
 -------------------------------------------------------
-https://drive.google.com/file/d/1kw7lxmdz9Cv-uGW88bsriWYVAyhjPC8Q/view?usp=sharing
-https://dev.to/bouhm/react-redux-flow-terminologies-and-example-104b
-https://github.com/sudheerj/reactjs-interview-questions#what-is-redux
-https://github.com/sudheerj/javascript-interview-questions
-https://www.interviewbit.com/react-native-interview-questions/
-https://github.com/samsoul16/react-native-interview-questions#what-are-the-cones-of-react-native
+63) What is a prototype chain
+Prototype chaining is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
 
-New: 
-React JS: https://www.interviewbit.com/react-interview-questions/#react-different-lifecycle
-React Native: https://www.interviewbit.com/react-native-interview-questions/
-REST API : https://www.interviewbit.com/rest-api-interview-questions/ 
-TypeScript:https://www.interviewbit.com/typescript-interview-questions/
-NodeJS: https://www.interviewbit.com/node-js-interview-questions/
+-------------------------------------------------------
+64) What is the difference between Call, Apply and Bind
+- Call: The call() method invokes a function with a given this value and arguments provided one by one
+- Apply: Invokes the function with a given this value and allows you to pass in arguments as an array
+- bind: returns a new function, allowing you to pass any number of arguments 
+
+-------------------------------------------------------
+
+65)What is Hoisting
+Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution. 
+
+-------------------------------------------------------
+What is a service worker
+A Service worker is basically a script (JavaScript file) that runs in the background, separate from a web page and provides features that don't need a web page or user interaction. Some of the major features of service workers are Rich offline experiences(offline first web application development), periodic background syncs, push notifications, intercept and handle network requests and programmatically managing a cache of responses.
+-------------------------------------------------------
+Archetect:
+https://saurabhshah23.medium.com/react-js-architecture-features-folder-structure-design-pattern-70b7b9103f22
+
+React JS:
+https://drive.google.com/file/d/1kw7lxmdz9Cv-uGW88bsriWYVAyhjPC8Q/view?usp=sharing
+https://github.com/sudheerj/javascript-interview-questions
+https://github.com/sudheerj/reactjs-interview-questions#what-is-redux
+https://www.interviewbit.com/react-interview-questions/
+https://dev.to/bouhm/react-redux-flow-terminologies-and-example-104b
+
+React Native: 
+https://github.com/samsoul16/react-native-interview-questions#what-are-the-cones-of-react-native
+https://www.interviewbit.com/react-native-interview-questions/
+
+TypeScript:
+https://www.interviewbit.com/typescript-interview-questions/
+
+REST API:
+https://www.interviewbit.com/rest-api-interview-questions/ 
+
+NodeJS:
+https://www.interviewbit.com/node-js-interview-questions/
 
 fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json())
    .then(users=>this.setState({monsters:users}))
+   
+   Questions to Ask the Interviewer:===>
+   - Can you share more about the day-to-day responsibilities of this role? 
+   - If I were hired for this role, what would you want me to achieve in my first two months?
+   - What mechanisms are in place for performance reviews and when would I receive my first formal evaluation?
+   - In your opinion, what is the single most important indicator of success in this role?
+   - What are your concerns about my candidacy?
+   - How long have you been at the company?
+   - Can you talk about company culture?
+   - How would you describe the management style of the organization?
+
+
+   HR Discussion====>
+   Why are you planning to change your current job?
+   - I am planning to switch for career growth and wanted to learn new things and explore myself to give my best.
+   - Though I’ve learned a lot at my company, from my research about this opportunity, I can see that this position is a better fir for where I want to take my career.  
