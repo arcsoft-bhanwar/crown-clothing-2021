@@ -12,6 +12,7 @@ When we receive new projects, I review and discuss with clients. and, depending 
 - Directory/folder structure
 - App title + Favicon
 - UI setup like fonts creation from SVG icons,
+- Styled Components
 - SCSS setup like varibales, mixins, respiinsiveness break points based on max and min-width,
 - webpack implementaion for the bundling,
 - Router (navigation)

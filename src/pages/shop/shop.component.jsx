@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Route} from 'react-router-dom'
 
-import './shop.styles.scss'
+import {ShopPageContainer} from './shop.styles'
 import CollectionOverview from '../../components/collection-overview/collection-overview.component'
 import CollectionPage from '../collection/collection.component';
 
@@ -73,10 +73,10 @@ import CollectionPage from '../collection/collection.component';
 const ShopPage = ({match}) => {
     console.log('kkkkkk', match)
     return (
-        <div className='shop-page'>
+        <ShopPageContainer>
             <Route exact path={`${match.path}`} component={CollectionOverview} />
             <Route path={`${match.path}/:collectionId`} component={CollectionPage}/>
-        </div>
+        </ShopPageContainer>
     )
 }
 

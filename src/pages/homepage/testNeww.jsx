@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import './testNeww.styles.scss'
+import {CounterStylesContainer, ColorGreen, ColorRed} from './testNeww.styles'
 const TestNeww =({value})=>{
 
     const [counter, setCounter]=useState(value)
@@ -26,7 +26,7 @@ const TestNeww =({value})=>{
 
 
     return(
-        <div><span className="counter-style">Counter:</span>{counter %2==0 ? (<span className='color-green'>{counter}</span>) : (<span className='color-red'>{counter}</span>)}</div>
+        <div><CounterStylesContainer>Counter:</CounterStylesContainer>{counter %2==0 ? (<ColorGreen>{counter}</ColorGreen>) : (<ColorRed>{counter}</ColorRed>)}</div>
     )
 
 }
