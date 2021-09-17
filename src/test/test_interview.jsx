@@ -139,7 +139,7 @@ The disadvantage of using prop drilling is that the components that should other
 -------------------------------------------------------
 
 11) Higher-Order Components
--A higher-order component is a function that takes a component and returns a new component.
+-A higher-order component is a function that takes a component as argument and returns a new component.
 
 While developing React applications, we might develop components that are quite similar to each other with minute differences.
 
@@ -281,7 +281,7 @@ onClick={()=> this.setState(state=>({
 
 -------------------------------------------------------
 
-21) React lifecycle Method older one:==>
+21) React lifecycle Method :==>
 
 21-01) Mounting Phase==>
 There are four built-in lifecycle methods that are called in the order when a component is mounted:
@@ -491,7 +491,7 @@ We will get here prop when we are rendering component via <Route exact path='/' 
 -------------------------------------------------------
 
 34) Security::=>
-- Secure your HTTP authentication by React Router,JSON Web Token (JWT), OAuth, PassportJs
+- Secure HTTP authentication by React Router,JSON Web Token (JWT), OAuth, PassportJs
 - Only Load Stuff if the User Needs It, we can use Lazy Loading(React.lazy)
 - Use default data binding with curly braces {} and React will
 - automatically escape values to protect against XSS attacks.
@@ -671,7 +671,7 @@ Redux Thunk middleware allows us to write action creators that return a function
 -------------------------------------------------------
 
 52) What is React memo function?
-Class components can be restricted from rendering when their input props are the same using PureComponent or shouldComponentUpdate. Now you can do the same with function components by wrapping them in React.memo.
+Class components can be restricted from rendering when their input props are the same using PureComponent or shouldComponentUpdate. Now we can do the same with function components by wrapping them in React.memo.
 
 const MyComponent = React.memo(function MyComponent(props) {
  /* only rerenders if props change */
