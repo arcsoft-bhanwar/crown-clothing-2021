@@ -45,26 +45,23 @@ Implement AWS CloudFront so our website can serve via cache
 00) Agile Methodologies:==>
 - Agile methodology is a type of project management process, mainly used for software development, where demands and solutions evolve through the collaborative effort of self-organizing and cross-functional teams and their customers.
 
+-------------------------------------------------------
+Day to day Activity:===>
+
+- I’ll discuss with my team members and take update for assigned tasks/Tickets in the morning before to move cleint standup.
 - We are working on two week sprint.
 - We have daily standup with client in morning then I’ll share the update on daily basis to client on behalf of my team members.
+- After the call I’ll followup my team members and work with them closely,  if someone gets stuck in my team, to help them out, and to ensure smooth releases and smooth delivery. 
 
 - Implementaion new features==>:
  When we receive a notification from Jira for new ticket or client put ticket on slack, then I’ll go through the JIRA ticket which was assigned to me and listed out a checklist of unclear things and schedule a call with client and over call I will analysis with client for their requirement.
 
-- Then we will do POC by creating a seprate branch from the master branch, if everthing works as expected then
+- Then we will do POC(Proof of concept) by creating a seprate branch from the master branch, if everthing works as expected then
 - I’ll work on archetural things and share latest code base with my developer for further development. 
 - If feature is developed by developer with unit testing then he will move this ticket to  Code Review lane then I'll work on code review then I'll move this ticket to 'Ready to QA' lane and the Testing phase start.
 - If QA passted then we QA will move this ticket to Ready to UAT lane UAT done by client.
 - If UAT passed then client move this ticket to Ready to deply Lane.
 - then I’ll deploy the code on producion, once post production done by QA then Tickets marked Done/Closed. 
-
--------------------------------------------------------
-
-00) My Daily Routine:=>
-
-- I’ll discuss with my team members and take update for assign tasks/Tickets in the morning before to move cleint standup.
-- We have daily standup with client in morning then I’ll share the update on daily basis to client on behalf of my team members.
-- After the call I’ll followup my team members and work with them closely,  if someone gets stuck in my team, to help them out, and to ensure smooth releases and smooth delivery. 
 
 -------------------------------------------------------
 
@@ -381,6 +378,10 @@ Hooks are JavaScript functions, but you need to follow two rules when using them
 
 -------------------------------------------------------
 
+Is Hooks cover all use cases for classes?
+Hooks doesn't cover all use cases of classes but there is a plan to add them soon. Currently there are no Hook equivalents to the uncommon getSnapshotBeforeUpdate and componentDidCatch lifecycles yet.
+
+-------------------------------------------------------
 
 26) Array==>
 
@@ -420,6 +421,13 @@ OR we can restructuring as below
 	 <MenuItem key={id} title={title} imageUrl={imageUrl}/>
 	))
 }
+
+-------------------------------------------------------
+
+28) React map v/s forEach() or for :==>
+The choice between map() and forEach() will depend on our use case. If we plan to change, alternate, or use the data, we should pick map(), because it returns a new array with the transformed data.
+
+But, if we won't need the returned array, then no need to use map() - instead we should use forEach() or even a for loop.
 
 -------------------------------------------------------
 
@@ -679,6 +687,8 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 -------------------------------------------------------
 
+What is web accessibility?
+Web accessibility means a web for differently abled or disabled people. HTML5 introduced, role attribute and WAI-ARIA so that even disable people can interact, understand and navigate a website properly.
 
 53) Accessibility:=>
 Web accessibility is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
@@ -807,8 +817,22 @@ Event bubbling is a type of event propagation where the event first triggers on 
 The memory leak will happen if the API server or host took some time to respond and the component was unmounted before the response was received. Though the component was unmounted, the response to the request will still be received on completion. The response will then be parsed and setData will be called.
 
 -------------------------------------------------------
-62) What are primitive data types?
-string, number, boolean, null, undefined, bigint. symbol
+What are the JavaScript data types?
+Ans: There are two types of data types in JavaScript:
+
+1. Primitive data types.
+
+String - It represents a sequence of characters, for example: "hello".
+Number - It represents numeric values, for example, 100.
+Boolean - It represents boolean value either false or true.
+Undefined - represents an undefined value.
+Null - represents null, i.e., no value at all.
+
+2. Non-primitive data types.
+
+Object - It represents an instance through which we can access members.
+Array - It represents a group of similar values.
+RegExp - It represents a regular expression.
 
 -------------------------------------------------------
 63) What is a prototype chain
@@ -826,9 +850,49 @@ Prototype chaining is used to build new types of objects based on existing ones.
 Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution. 
 
 -------------------------------------------------------
-What is a service worker
+66) What is a service worker
 A Service worker is basically a script (JavaScript file) that runs in the background, separate from a web page and provides features that don't need a web page or user interaction. Some of the major features of service workers are Rich offline experiences(offline first web application development), periodic background syncs, push notifications, intercept and handle network requests and programmatically managing a cache of responses.
 -------------------------------------------------------
+67)What Is A Web Worker?
+Web Workers run in background threads without interfering with the UI, and they communicate with the code that created them by way of event handlers.
+-------------------------------------------------------
+
+68)What is a CDN?
+A content delivery network (CDN) refers to a geographically distributed group of servers which work together to provide fast delivery of Internet content.
+
+A CDN allows for the quick transfer of assets needed for loading Internet content including HTML pages, javascript files, stylesheets, images, and videos. The popularity of CDN services continues to grow, and today the majority of web traffic is served through CDNs, including traffic from major sites like Facebook, Netflix, and Amazon.
+
+A properly configured CDN may also help protect websites against some common malicious attacks, such as Distributed Denial of Service (DDOS) attacks.
+
+-------------------------------------------------------
+69) What are the benefits of using a CDN?
+- Improving website load times
+- Reducing bandwidth costs
+- Increasing content availability and redundancy
+- Improving website security
+-------------------------------------------------------
+
+What is Semantic HTML?
+HTML5 introduced semantic tags like header, nav, article, section, aside, footer and figcaption. These tags convey the containing content. Whereas in html4, div tag was used to create partitions using descriptive classes. Semantic Elements results better in search results and social media crawling.
+
+Which is best HTML debugging tool.
+We use chrome, Firefox and firebug (included in Firefox now) Dev tools as they are browser inbuilt. But W3C Validation is best HTML/CSS Debugging tools to validate
+
+How to use HTML5 New tags in IE8 and lesser.
+HTML5 semantic tags like, header, nav, article, section, aside, footer and figcaption are not supported in HTML4 based browsers like IE8 and lesser. We can use html5shiv.js to run these elements in older browsers.
+
+Difference between reset.css and normalize css?
+reset.css removes all build-in browsers styling like, margin , padding and border . But normalize.css gives a common book like appearance, like bold heading, margin between paragraphs, Screen friendly fonts, etc.
+
+What is CSS Box Model?
+CSS Box Model includes content, margin, padding, and border. Total border-box width is equal to width of content + padding + border. These properties occupies space on css box model.
+
+Difference between display none and visibility hidden ?
+Visibility:hidden hide the content from user but retain space. Whereas Display:none hide the content and remove space.
+
+How to vertically align a div in css?
+To align div in vertical center , use display:table-cell with vertical-align:middle. Make sure the height of div is more than content and display of parent div is table.
+
 Archetect:
 https://saurabhshah23.medium.com/react-js-architecture-features-folder-structure-design-pattern-70b7b9103f22
 
@@ -852,9 +916,25 @@ https://www.interviewbit.com/rest-api-interview-questions/
 NodeJS:
 https://www.interviewbit.com/node-js-interview-questions/
 
+Fetch:====>
+The Fetch API provides a fetch() method defined on the window object. It also provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline (requests and responses). The fetch method has one mandatory argument- the URL of the resource to be fetched. This method returns a Promise that can be used to retrieve the response of the request. 
 fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json())
    .then(users=>this.setState({monsters:users}))
-   
+
+Axios:
+Axios is a Javascript library used to make HTTP requests from node.js or XMLHttpRequests from the browser and it supports the Promise API that is native to JS ES6. It can be used intercept HTTP requests and responses and enables client-side protection against XSRF. It also has the ability to cancel requests.
+axios.get('url')
+  .then((response) => {
+ 
+    // Code for handling the response
+  })
+  .catch((error) => {
+ 
+    // Code for handling the error
+  })
+
+
+
    Questions to Ask the Interviewer:===>
    - Can you share more about the day-to-day responsibilities of this role? 
    - If I were hired for this role, what would you want me to achieve in my first two months?
