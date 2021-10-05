@@ -1,13 +1,11 @@
 test.js
 
-00-Myself===>
 My Name is Bhanwar Singh Rathore and I’m from Udaipur (Rajasthan) and right now  I’m working as Sr. UI-Archetect in Atcgate Inc.
 Prior to this, I began my career as a web designer with Sangam Infotech in the year 2000. After that, I worked for a few companies, including Kitss Software Consultants and Visual Soft Technologies.
 Finally, in 2007, I joined arcgate as a Sr. Web Designer, and now I'm working as a Sr. UI-Archetect/Team Lead/Project Lead, managing a team of ten people, including a developer, designer, and QA.
 
 I'm responsible for frontend technical support, so if someone in my team gets stuck, I'm there to help them out and ensure smooth delivery of projects and smooth releases.
 
-00-My role in my company===>
 When we receive new projects, I review and discuss with clients. and, depending on the client's needs, I'll work on architectural elements such as
 
 - Rendering approache SSR or CSR,
@@ -26,13 +24,14 @@ When we receive new projects, I review and discuss with clients. and, depending 
 - Multi-environment setup (create deployable builds pointing to specific Database environments using environment variables like dev, qa, preprod(stage) and production, without having all environment config bundled in code.)
 - Internationalization/Multi-Lingual using react-i18next, i18next library.
 - Unit testing implementation using jest  and Enzyme.
+- Deployment and hosting (Firebase hosting)
 - ES Lint
 - Design Pattern (Container-View)
 - CI/CD for continuous integration.
 
 Then I'll go over everything to make sure it's all incorporated and implemented, and then I'll share my codebase with my team members for future development. 
 
-00-Deployment:==>
+Deployment:==>
 - In case of React-Native, i’m also reponsible to deploy Android and iOS app respectively on Google Play Store and Apple App Store
 - if we built any web app in ReactJs SSR then need to deploy AWS EC2 (Elastic Compute Cloud) console
 - for ReactJS CSR then need to deploy on AWS S3 bucket and many more things which required a project to kickstart.
@@ -105,10 +104,6 @@ JSX stands for JavaScript XML. It is a markup syntax that is very similar to HTM
 05) What are Pure Components?
 React.PureComponent is similar to React.Component. The difference between them is that React.Component doesn’t implement shouldComponentUpdate(), but React.PureComponent implements it with a shallow prop and state comparison.
 
--------------------------------------------------------
-
-05) What is a pure function
-A Pure function is a function where the return value is only determined by its arguments without any side effects. i.e, If we call a function with the same arguments 'n' number of times and 'n' number of places in the application then it will always return the same value.
 -------------------------------------------------------
 
 06) What are props in React?
@@ -210,7 +205,7 @@ ReactDOM.render(
  rootElement
 );
 
-StrictMode help us to find:
+- StrictMode help us to find
 - Identifying components with unsafe lifecycle methods
 - Warning about the usage of legacy string API
 - Warning about the usage of findDOMNode
@@ -330,7 +325,7 @@ If this.state.showChild return false then <Lifecycles text={this.state.text} /> 
 
 22) React lifecycle Method with hooks:==>
 
-useEffect(()=>{ /*component did mount*/ },[]) // we can pass an empty array ([]) as a second argument
+useEffect(()=>{ /*component did mount*/ },[])
 useEffect(()=>{ /*Component Did update*/ })
 useEffect(()=>{ /*Component Did update only if tinku will update*/ },[tinku])
 useEffect(()=>{ /*Component Did update only if tinku & chinku will update*/ },[tinku, chinku])
@@ -487,7 +482,7 @@ We will get here prop when we are rendering component via <Route exact path='/' 
 - Code should be having proper commenting and indenting
 - Test Coverge score should be above 70-80%
 
-- we can do code review using `Review Assistant` of VS Code
+- we can doe code review using `Review Assistant` of VS Code
 -------------------------------------------------------
 
 33) Testing Jest/Enzyme::=>
@@ -584,35 +579,6 @@ A RESTful API is an architectural style for an application program interface (AP
 - In react we are using axios
 -------------------------------------------------------
 
-40) What are the HTTP Methods?
-GET: This is used for fetching details from the server and is basically a read-only operation.
-POST: This method is used for the creation of new resources on the server.
-PUT: This method is used to update the old/existing resource on the server or to replace the resource.
-DELETE: This method is used to delete the resource on the server.
-PATCH: This is used for modifying the resource on the server.
-OPTIONS: This fetches the list of supported options of resources present on the server.
-The POST, GET, PUT, DELETE corresponds to the create, read, update, delete operations which are most commonly called CRUD
--------------------------------------------------------
-
-Fetch:====>
-The Fetch API provides a fetch() method defined on the window object. It also provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline (requests and responses). The fetch method has one mandatory argument- the URL of the resource to be fetched. This method returns a Promise that can be used to retrieve the response of the request. 
-fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json())
-   .then(users=>this.setState({monsters:users}))
-
-Axios:
-Axios is a Javascript library used to make HTTP requests from node.js or XMLHttpRequests from the browser and it supports the Promise API that is native to JS ES6. It can be used intercept HTTP requests and responses and enables client-side protection against XSRF. It also has the ability to cancel requests.
-axios.get('url')
-  .then((response) => {
- 
-    // Code for handling the response
-  })
-  .catch((error) => {
- 
-    // Code for handling the error
-  })
-
-  -------------------------------------------------------
-
 41) GraphQL:=>
 Send a GraphQL query to your API and get exactly what you need, nothing more and nothing less.
 - We are using graphQL in react via appolo client
@@ -620,12 +586,10 @@ Send a GraphQL query to your API and get exactly what you need, nothing more and
 -------------------------------------------------------
 
 42) Redux
-Redux is a predictable state container for JavaScript apps based on the Flux design pattern. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
-
 - Good for managing large state
 - Useful for sharing data between components
 - Predictable state management using the 3 principles.
-- 1 Single source of truth single source of truth and this is a fancy way of saying that we have one, single big object that describes the entire state of the app.
+- 1 Single source of truthsingle source of truth and this is a fancy way of saying that we have one, single big object that describes the entire state of the app.
 - 2 State is read only(immutable)So the state object that we will create with redux will actually never get modified and instead we would create a new state after each action is taken by the user.
 - 3 Changes using pure functions.The idea that a pure function is something that receives an input and always returns an output that is predictable.
 
@@ -633,10 +597,7 @@ Redux is a predictable state container for JavaScript apps based on the Flux des
 
 43) Redux Flow:
 - The first one is action and action is something that a user does such as clicking on a button or a drop down menu and what happens in redux is as soon as a user clicks on something a button and creates an action.
-- An action is dispatched when a user interacts with the application.
-- It goes through something called a reducer and a reducer is simply a function. A pure function that receives an input which is the action, and based on type of action reducer returns a new state.
-- The store notifies the view by executing their callback functions.
-- The view can retrieve updated state and re-render again.
+- It goes through something called a reducer and a reducer is simply a function. A pure function that receives an input which is the action so the user just clicked on a button and creates an output and this output is the state or the store as we call it in redux which is the entire state of the app.
 -------------------------------------------------------
 
 44) Flux PatternUnidirectional data flow: 
@@ -648,12 +609,17 @@ Action => Dispatcher= >Store=>View
 - Redux Thunk
 - Redux Saga
 - mapStateToProps: this naming can be anything but mapStateToProps is standard with redux codebases.
+-------------------------------------------------------
+
+
+46) Redux:=>
+Redux is a predictable state container for JavaScript apps based on the Flux design pattern. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
 
 -------------------------------------------------------
 
 47) Redux Thunk:=>
 Redux Thunk middleware allows us to write action creators that return a function instead of an action. 
-After implemetation of this we can start dispatching actions asynchronously.
+
 -------------------------------------------------------
 
 48) Redux Saga:==>
@@ -664,6 +630,13 @@ After implemetation of this we can start dispatching actions asynchronously.
 - With Redux saga as middleware:-
   Action(s) → Redux Saga →Reducer(s) 
 -Great support for Async Operations  
+
+-------------------------------------------------------
+
+49) Redux follows three fundamental principles:=>
+- Single source of truth: The state of your whole application is stored in an object tree within a single store.
+- State is read-only: The only way to change the state is to emit an action.
+- Changes are made with pure functions: To specify how the state tree is transformed by actions, you write reducers. Reducers are just pure functions that take the previous state and an action as parameters, and return the next state.
 
 -------------------------------------------------------
 
@@ -714,8 +687,12 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 -------------------------------------------------------
 
-53) What is web accessibility?
+What is web accessibility?
 Web accessibility means a web for differently abled or disabled people. HTML5 introduced, role attribute and WAI-ARIA so that even disable people can interact, understand and navigate a website properly.
+
+53) Accessibility:=>
+Web accessibility is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+React fully supports building accessible websites, often by using standard HTML techniques
 
 - We can use Standards and Guidelines like: 
 - WCAG(Web Content Accessibility Guidelines )
@@ -840,7 +817,7 @@ Event bubbling is a type of event propagation where the event first triggers on 
 The memory leak will happen if the API server or host took some time to respond and the component was unmounted before the response was received. Though the component was unmounted, the response to the request will still be received on completion. The response will then be parsed and setData will be called.
 
 -------------------------------------------------------
-62) What are the JavaScript data types?
+What are the JavaScript data types?
 Ans: There are two types of data types in JavaScript:
 
 1. Primitive data types.
@@ -871,12 +848,7 @@ Prototype chaining is used to build new types of objects based on existing ones.
 
 65)What is Hoisting
 Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution. 
--------------------------------------------------------
 
-66) What is a Progressive Web App(PWA)?
-Progressive Web Apps (PWAs) are web apps that use service workers, manifests, and other web-platform features in combination with progressive enhancement to give users an experience comparable to native apps.
-
-The entire credit for this seamless experience should be given to the Service Worker( A script that the browser runs in the background separate from web page), which is the backbone of every PWA. The service workers enable reliable and intelligent caching, background content updating, push notifications and the most attractive offline functionality to prior visited sites. This means that, after the first visit to a website, the site and app will be reliably fast even on flaky networks.
 -------------------------------------------------------
 66) What is a service worker
 A Service worker is basically a script (JavaScript file) that runs in the background, separate from a web page and provides features that don't need a web page or user interaction. Some of the major features of service workers are Rich offline experiences(offline first web application development), periodic background syncs, push notifications, intercept and handle network requests and programmatically managing a cache of responses.
@@ -900,25 +872,25 @@ A properly configured CDN may also help protect websites against some common mal
 - Improving website security
 -------------------------------------------------------
 
-70) What is Semantic HTML?
+What is Semantic HTML?
 HTML5 introduced semantic tags like header, nav, article, section, aside, footer and figcaption. These tags convey the containing content. Whereas in html4, div tag was used to create partitions using descriptive classes. Semantic Elements results better in search results and social media crawling.
 
-71) Which is best HTML debugging tool.
+Which is best HTML debugging tool.
 We use chrome, Firefox and firebug (included in Firefox now) Dev tools as they are browser inbuilt. But W3C Validation is best HTML/CSS Debugging tools to validate
 
-72) How to use HTML5 New tags in IE8 and lesser.
+How to use HTML5 New tags in IE8 and lesser.
 HTML5 semantic tags like, header, nav, article, section, aside, footer and figcaption are not supported in HTML4 based browsers like IE8 and lesser. We can use html5shiv.js to run these elements in older browsers.
 
-73) Difference between reset.css and normalize css?
+Difference between reset.css and normalize css?
 reset.css removes all build-in browsers styling like, margin , padding and border . But normalize.css gives a common book like appearance, like bold heading, margin between paragraphs, Screen friendly fonts, etc.
 
-74) What is CSS Box Model?
+What is CSS Box Model?
 CSS Box Model includes content, margin, padding, and border. Total border-box width is equal to width of content + padding + border. These properties occupies space on css box model.
 
-75) Difference between display none and visibility hidden ?
+Difference between display none and visibility hidden ?
 Visibility:hidden hide the content from user but retain space. Whereas Display:none hide the content and remove space.
 
-76) How to vertically align a div in css?
+How to vertically align a div in css?
 To align div in vertical center , use display:table-cell with vertical-align:middle. Make sure the height of div is more than content and display of parent div is table.
 
 Archetect:
@@ -944,7 +916,22 @@ https://www.interviewbit.com/rest-api-interview-questions/
 NodeJS:
 https://www.interviewbit.com/node-js-interview-questions/
 
+Fetch:====>
+The Fetch API provides a fetch() method defined on the window object. It also provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline (requests and responses). The fetch method has one mandatory argument- the URL of the resource to be fetched. This method returns a Promise that can be used to retrieve the response of the request. 
+fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json())
+   .then(users=>this.setState({monsters:users}))
 
+Axios:
+Axios is a Javascript library used to make HTTP requests from node.js or XMLHttpRequests from the browser and it supports the Promise API that is native to JS ES6. It can be used intercept HTTP requests and responses and enables client-side protection against XSRF. It also has the ability to cancel requests.
+axios.get('url')
+  .then((response) => {
+ 
+    // Code for handling the response
+  })
+  .catch((error) => {
+ 
+    // Code for handling the error
+  })
 
 
 
