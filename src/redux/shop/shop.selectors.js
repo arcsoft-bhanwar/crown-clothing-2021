@@ -21,5 +21,9 @@ export const selectCollection = collectionUrlParam =>
   export const selectIsCollectionFetching = createSelector(
     [selectShop],
     shop => shop.isFetching
+  )
 
+  export const selectIsCollectionLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections // we are getting shop.collection null then we need to convert into boolean that's why we put !! before this eg.= !! null and it return false
   )

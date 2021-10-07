@@ -11,6 +11,8 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 import {setCurrentUser} from './redux/user/user.actions'
 import{selectCurrentUser} from './redux/user/user.selectors'
 import HocExample from './pages/hocExample/hocExample'
+import HuddleTest from './pages/huddleTest/huddleTest'
+import UseEffect from '../src/pages/use_effect_example/use_effect_example'
 
 class App extends React.Component {
   // constructor() {
@@ -59,6 +61,8 @@ class App extends React.Component {
         <Route exact path='/' component={HomePage} />
         <Route path ='/shop' component={ShopPage}/>
         <Route path='/hoc' component={HocExample} />
+        <Route path='/huddleTest' component={HuddleTest} />
+        <Route path='/useeffect' component={UseEffect} />
         <Route exact path ='/checkout' component={CheckoutPage}/>
         <Route exact path='/signin' render={()=>currentUser ? (<Redirect to="/"/>) : (<SignInAndSignUp/>)}/>
         </Switch>
