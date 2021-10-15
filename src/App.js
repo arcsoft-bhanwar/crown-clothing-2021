@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import{Route, Switch, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,53 +13,43 @@ import{selectCurrentUser} from './redux/user/user.selectors'
 import HocExample from './pages/hocExample/hocExample'
 import HuddleTest from './pages/huddleTest/huddleTest'
 import UseEffect from '../src/pages/use_effect_example/use_effect_example'
+import CustomHooks from './pages/customHooks/customHooks';
+const App =({setCurrentUser, currentUser})=>{
 
-class App extends React.Component {
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     currentUser: null
-  //   };
-  // }
-
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const {setCurrentUser} = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      //createUserProfileDocument(userAuth)
-      if (!!userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        //console.log('uuuuuu', userRef)
-        userRef.onSnapshot(snapShot => {
-          //console.log('vvvvvvvvv', snapShot.data())
-          setCurrentUser({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          });
-
-         
+let unsubscribeFromAuth = null;
+useEffect(()=>{
+  unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //createUserProfileDocument(userAuth)
+    if (!!userAuth) {
+      const userRef = await createUserProfileDocument(userAuth);
+      //console.log('uuuuuu', userRef)
+      userRef.onSnapshot(snapShot => {
+        //console.log('vvvvvvvvv', snapShot.data())
+        setCurrentUser({
+          currentUser: {
+            id: snapShot.id,
+            ...snapShot.data()
+          }
         });
-      }
 
-      setCurrentUser(userAuth);
-    });
-  }
+       
+      });
+    }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-  render(){
-    const {currentUser} = this.props;
+    setCurrentUser(userAuth);
+  });
+  return ()=>{unsubscribeFromAuth();}
+},[])
+ 
+  
+    
     return (
       <div>
         <Header/>
         <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path ='/shop' component={ShopPage}/>
+        <Route path='/custom-hooks' component={CustomHooks}/>
         <Route path='/hoc' component={HocExample} />
         <Route path='/huddleTest' component={HuddleTest} />
         <Route path='/useeffect' component={UseEffect} />
@@ -70,7 +60,7 @@ class App extends React.Component {
     );
   }
   
-}
+
 const mapStateToProps=createStructuredSelector({
   currentUser:selectCurrentUser
 })

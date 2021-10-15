@@ -333,10 +333,42 @@ If this.state.showChild return false then <Lifecycles text={this.state.text} /> 
 useEffect(()=>{ /*component did mount*/ },[]) // we can pass an empty array ([]) as a second argument
 useEffect(()=>{ /*Component Did update*/ })
 useEffect(()=>{ /*Component Did update only if tinku will update*/ },[tinku])
-useEffect(()=>{ /*Component Did update only if tinku & chinku will update*/ },[tinku, chinku])
-useEffect(()=>{ /*COmpoentDidMount*/ return ()=>{ //component will unmount } },[])
+useEffect(()=>{ /*Component Did update only if tinku & chinku will update*/ },[tinku, chinku, props.source])
+useEffect(()=>{ /*COmpoentDidMount*/ return ()=>{ //component will unmount } },[]) //useEffect with Cleanup
 
-  useSelector, useDispatch
+
+
+useSelector, useDispatch
+-------------------------------------------------------
+
+23) Using the ref:==>
+- We can use ref in class component but can't use the ref attribute on function components because they don’t have instances.
+ - refs primarily as a way to access the DOM.
+ 
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  render() {
+    return <div ref={this.myRef} />;
+  }
+}
+
+Accessing Refs==>
+When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref.
+const node = this.myRef.current;
+-------------------------------------------------------
+
+23) Using the useRef Hook:==>
+useRef: useRef is like a “box” that can hold a mutable value in its .current property.
+
+There are a few good use cases for refs:
+- Managing focus, text selection, or media playback.
+- Triggering imperative animations.
+- Integrating with third-party DOM libraries.
+
+
 -------------------------------------------------------
 
 23) Using the State Hook:==>
@@ -359,21 +391,64 @@ const FunctionalHoocksUseState = ()=>{
 
 -------------------------------------------------------
 
+24) Using the useReducer Hook===>
+- An alternative to useState. Accepts a reducer of type (state, action) => newState, and returns the current state paired with a dispatch method.
+
+-------------------------------------------------------
 24) Custom Hook==>
+Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: higher-order components and render props. Custom Hooks let us do this, but without adding more components to our tree.
+
 A custom Hook is a JavaScript function whose name starts with ”use” and that may call other Hooks. 
 
-const FriendListItem =(props)=> {
-  const isOnline = useFriendStatus(props.friend.id);
+import { useState, useEffect } from 'react'
+const useFetch = (url) => {
 
-  return (
-    <li style={{ color: isOnline ? 'green' : 'black' }}>
-      {props.friend.name}
-    </li>
-  );
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          const res = await fetch(
+              url
+          );
+          const dataArray = await res.json();
+          setData(dataArray[0]);
+      };
+
+      fetchData();
+  })
+  return data;
+
 }
+
+const User = ({ userId }) => {
+  const user = useFetch(`https://jsonplaceholder.typicode.com/users?id=${userId}`)
+  return (
+          <>
+              {user ?
+                  (<div>
+                      <h3>
+                          {user.username}
+                      </h3>
+                      <p>
+                          {user.name}
+                      </p>
+  
+                  </div>
+                  ) : (<p>User Not Found!!!</p>)
+              }
+          </>
+  )
+}
+export default User;
 
 -------------------------------------------------------
 
+
+52) What is React useMemo Hook?
+Returns a memoized value.
+Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+-------------------------------------------------------
 25) Rules of Hooks===>
 Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a linter plugin to enforce these rules automatically:
 - Only Call Hooks at the Top Level, Don’t call Hooks inside loops, conditions, or nested functions.
@@ -535,7 +610,15 @@ In what places can an error boundary detect an error?
 - Inside the constructor
 
 -------------------------------------------------------
+52) What is React memo function?
+Class components can be restricted from rendering when their input props are the same using PureComponent or shouldComponentUpdate. Now we can do the same with function components by wrapping them in React.memo.
 
+const MyComponent = React.memo(function MyComponent(props) {
+ /* only rerenders if props change */
+});
+
+
+-------------------------------------------------------
 38) Performance Optimization Techniques for React Apps:==>
 -Using useMemo( ) -
 It is a React hook that is used for caching CPU-Expensive functions.
@@ -705,12 +788,7 @@ After implemetation of this we can start dispatching actions asynchronously.
 
 -------------------------------------------------------
 
-52) What is React memo function?
-Class components can be restricted from rendering when their input props are the same using PureComponent or shouldComponentUpdate. Now we can do the same with function components by wrapping them in React.memo.
 
-const MyComponent = React.memo(function MyComponent(props) {
- /* only rerenders if props change */
-});
 
 -------------------------------------------------------
 
