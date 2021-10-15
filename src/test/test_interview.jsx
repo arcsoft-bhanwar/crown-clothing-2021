@@ -449,6 +449,15 @@ Returns a memoized value.
 Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 -------------------------------------------------------
+
+25) What is useCallback Hook?
+
+Returns a memoized callback.
+Pass an inline callback and an array of dependencies. useCallback will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).
+useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+
+-------------------------------------------------------
+
 25) Rules of Hooks===>
 Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a linter plugin to enforce these rules automatically:
 - Only Call Hooks at the Top Level, Don’t call Hooks inside loops, conditions, or nested functions.
